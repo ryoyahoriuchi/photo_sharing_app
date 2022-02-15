@@ -1,3 +1,20 @@
 <h1>プロフィール編集ページ</h1>
 
+<%= form_with(model: @user, url: user_path, local: true, method: :patch) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+  
+  <%= form.label :content %>
+  <%= form.text_field :content %>
+
+  <%= form.label :image %>
+  <%= form.file_field :image %>
+  <%= form.hidden_field :image_cache %>
+
+  <%= form.submit %>
+<% end %>
+
 <%= link_to 'Back', user_path(@user.id) %>

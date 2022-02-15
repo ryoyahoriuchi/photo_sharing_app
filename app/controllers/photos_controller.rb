@@ -25,6 +25,7 @@ class PhotosController < ApplicationController
 
   def confirm
     @photo = Photo.new(photo_params)
+    render :new if @photo.invalid?
   end
 
   # POST /photos or /photos.json
