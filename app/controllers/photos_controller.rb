@@ -21,17 +21,19 @@ class PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
+    if @photo.user_id != current_user.id
+      redirect_to photos_path
+    end
   end
 
   def confirm
-    @photo = Photo.new(photo_params)
+    @photo = current_user.photos.build(photo_params)
     render :new if @photo.invalid?
   end
 
   # POST /photos or /photos.json
   def create
-    @photo = Photo.new(photo_params)
-
+    @photo = current_user.photos.build(photo_params)
     respond_to do |format|
       if @photo.save
         format.html { redirect_to photo_url(@photo), notice: "Photo was successfully created." }
@@ -58,11 +60,14 @@ class PhotosController < ApplicationController
 
   # DELETE /photos/1 or /photos/1.json
   def destroy
-    @photo.destroy
-
-    respond_to do |format|
-      format.html { redirect_to photos_url, notice: "Photo was successfully destroyed." }
-      format.json { head :no_content }
+    if @photo.user_id == current_user.id
+      @photo.destroy
+        respond_to do |format|
+          format.html { redirect_to photos_url, notice: "Photo was successfully destroyed." }
+          format.json { head :no_content }
+        end
+    else
+      redirect_to photos_path
     end
   end
 
