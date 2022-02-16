@@ -1,0 +1,13 @@
+<h1>お気に入り一覧</h1>
+
+<table>
+  <% @favorite.each do |favorite| %>
+      <tr>
+        <td><%= favorite.user.name %></td>
+        <td><%= favorite.photo.content %></td>
+        <td><%= image_tag favorite.photo.image.url if favorite.photo.image && favorite.photo.image.url %></td>
+        <td><%= favorite.user.updated_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td><%= link_to 'Show', photo_path(favorite.photo.id) %></td>
+      </tr>
+    <% end %>
+</table>

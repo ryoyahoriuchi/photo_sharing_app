@@ -8,6 +8,7 @@ class PhotosController < ApplicationController
 
   # GET /photos/1 or /photos/1.json
   def show
+    @favorite = current_user.favorites.find_by(photo_id: @photo.id)
   end
 
   # GET /photos/new
