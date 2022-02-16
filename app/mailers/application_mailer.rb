@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'appleorange0720@gmail.com'#ENV[MAILADRESS]
+  default from: ''#ENV[MAILADRESS]
   layout 'mailer'
 end
