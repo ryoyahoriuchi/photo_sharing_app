@@ -37,6 +37,7 @@ class PhotosController < ApplicationController
     @photo = current_user.photos.build(photo_params)
     respond_to do |format|
       if @photo.save
+        PhotoMailer.photo_mail(@photo).deliver
         format.html { redirect_to photo_url(@photo), notice: "Photo was successfully created." }
         format.json { render :show, status: :created, location: @photo }
       else
