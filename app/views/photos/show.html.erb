@@ -1,16 +1,16 @@
-<p>
-  <strong>Content:</strong>
-  <%= @photo.content %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @photo.image.url if @photo.image && @photo.image.url %>
-</p>
-
-<% if @photo.user_id == current_user.id %>
-  <%= link_to 'Edit', edit_photo_path(@photo) %>
-<% end %>
+<table class="contents">
+  <tbody class="content">
+    <tr><td><strong><%= @photo.user.name %></strong></td></tr>
+    <tr><td><p><%= @photo.content %></p></td></tr>
+    <td><p><%= image_tag @photo.image.url if @photo.image && @photo.image.url %></p></td>
+    <td>
+    <% if @photo.user_id == current_user.id %>
+      <%= link_to 'Edit', edit_photo_path(@photo) %>
+    <% end %>
+    </td>
+    <tr><td><%= @photo.updated_at.strftime('%Y/%m/%d %H:%M') %></td></tr>
+  </tbody>
+</table>
 
 <% unless @photo.user_id == current_user.id %>
   <% if @favorite.present? %>

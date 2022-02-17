@@ -11,18 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= image_tag(@photo.image.url) if @photo.image && @photo.image.url %>
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %>
-  </div>
-
+  <table class="contents">
+  <tbody class="content">
+      <div class="field">
+        <tr>
+          <td><%= form.label :content %></td>
+        </tr>
+        <tr>
+          <td><%= form.text_area :content %></td>
+        </tr>
+      </div>
+    
+      <div class="field">
+        <tr>
+          <td><%= form.label :image %></td>
+        </tr>
+        <tr>
+          <td><%= image_tag(@photo.image.url) if @photo.image && @photo.image.url %></td>
+        </tr>
+        <tr>
+          <td><%= form.file_field :image %></td>
+          <td><%= form.hidden_field :image_cache %></td>
+        </tr>
+      </div>
+    </tbody>
+  </table>
   <div class="actions">
     <%= form.submit %>
   </div>
